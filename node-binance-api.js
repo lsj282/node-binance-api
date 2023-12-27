@@ -329,6 +329,12 @@ let api = function Binance( options = {} ) {
         if ( typeof data.recvWindow === 'undefined' ) data.recvWindow = Binance.options.recvWindow;
         let query = method === 'POST' && noDataInSignature ? '' : makeQueryString( data );
         let signature = crypto.createHmac( 'sha256', Binance.options.APISECRET ).update( query ).digest( 'hex' ); // set the HMAC hash header
+	const aa = crypto.createHmac('sha256', Binance.options.APISECRET);
+	const bb = aa.update(query);
+	const cc = bb.digest('hex');
+	console.log(aa);
+	console.log(bb);
+	console.log(cc); 
         if ( method === 'POST' ) {
             let opt = reqObjPOST(
                 url + '?timestamp=' + data.timestamp + '&signature=' + signature,
